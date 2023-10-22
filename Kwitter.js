@@ -19,4 +19,28 @@ document.getElementById(firebaseConfig).value;
 function logout()
 {
   window.location("index.html");
+  localStorage.getItem("add_user", user_name);
+}
+
+function addRoom()
+{
+  localStorage.getItem("add_room", add_room);
+  document.getElementById(firebaseConfig).value;
+  window.location("kwitter_page.html")
+}
+
+function getData() {firebase.database().ref("/").on('value',
+function(snapshot) {document.getElementById("output").innerHTML =
+"";snapshot.forEach(function(childSnapshot) {childKey = childSnapshot.key;
+Room_names = childKey;
+
+row = "<div class='room_name' id="+Room_names+" onclick='redirectToRoomName(this.id)'>#"+Room_names+"</div><hr>"
+
+});});}
+getData();
+
+function redirectToRoomName()
+{
+  localStorage.setItem("Room_name", Room_names);
+  window.location("kwitter_page.html");
 }
