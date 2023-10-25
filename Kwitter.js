@@ -44,3 +44,24 @@ function redirectToRoomName()
   localStorage.setItem("Room_name", Room_names);
   window.location("kwitter_page.html");
 }
+
+function logout()
+{
+  window.location("kwitter_page.html");
+  localStorage.removeItem("user_name", user_name);
+  user_name = "<button class='logout' onclick='logout()'";
+  console.log("clicked on logout button - ")
+  updated_messages = Number(messages) + 1;
+}
+
+function send()
+{
+  send_button = "<button class='send_button' onclick='sendButton()'"
+  document.getElementById("inputBox").innerHTML = "";
+
+  firebase.database().ref(room_name).push({
+    name:user_name,
+    message:msg,
+    like:0
+  });
+}
